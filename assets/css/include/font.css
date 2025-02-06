@@ -1,0 +1,21 @@
+.font-size {
+  font-size: 16px;
+}
+.font-size-lg {
+  font-size: 20px;
+}
+.font-size-xlg {
+  font-size: 32px;
+}
+.bold {
+  font-weight: 500;
+}
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.font-body {
+  line-height: 0.8;
+}
