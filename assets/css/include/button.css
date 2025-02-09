@@ -1,0 +1,19 @@
+.button-large {
+  border-radius: 25px;
+  font-size: 16px;
+  width: 297px;
+  padding: 10px 25px;
+}
+.custom-btn {
+  background-color: #c70414;
+  color: white;
+  font-weight: bolder;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+.custom-btn:hover {
+  background-color: #e50914;
+  color: white;
+}

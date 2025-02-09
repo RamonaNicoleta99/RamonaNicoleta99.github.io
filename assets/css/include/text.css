@@ -5,3 +5,21 @@
 .uppercase {
   text-transform: uppercase;
 }
+.hero-text {
+  flex: 1;
+  padding-right: 50px;
+}
+.hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: whitesmoke;
+}
+.hero-text p {
+  font-size: 1.2rem;
+  color: whitesmoke;
+}
+.number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: whitesmoke;
+}

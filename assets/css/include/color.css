@@ -4,10 +4,13 @@
   color: whitesmoke;
 }
 .color-dark {
-  color: black;
+  color: var(--text-color-secondary);
+}
+.color-grey {
+  color: #b8b6dd;
 }
 .color-accent {
-  color: var(--accent-color);
+  color: var(--secondary-color);
 }
 .color-warning {
   color: var(--highlight-color);

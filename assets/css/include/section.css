@@ -3,7 +3,7 @@ body {
   color: var(--text-color);
 }
 
-.hero h1 {
+.hero-h1 {
   font-size: 3rem;
   margin-bottom: 30px;
 }
@@ -12,6 +12,27 @@ body {
   padding: 100px 0;
 }
 
+.carousel-item img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  max-width: 1200px;
+  margin: auto;
+}
 footer {
   margin-top: 50 px;
 }
@@ -20,5 +41,67 @@ footer {
 }
 .container-center {
   margin: auto;
-  width: 960px;
+  width: 90%;
+}
+.faq-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+.container {
+  padding: 59px 15px;
+}
+
+.white-container {
+  padding: 59px 15px;
+  background-color: white;
+}
+
+.instructions-container {
+  display: flex;
+  justify-content: center;
+}
+.accordion-button {
+  background-color: var(--primary-bg);
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+  background-color: var(--primary-bg);
+  color: var(--secondary-color);
+}
+.accordion-body {
+  background-color: var(--primary-bg);
+  color: white;
+}
+.accordion-item {
+  background-color: var(--primary-bg);
+  border: none;
+}
+.accordion-button::after {
+  filter: invert(1);
+}
+.square-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+.square-item {
+  background: #222;
+  color: white;
+  padding: 30px;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+.image-container img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+.row-cols-2 {
+  max-width: 500px;
 }

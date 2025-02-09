@@ -1,3 +1,4 @@
-.background-accent {
-  color: var(--accent-color);
+.background-dark {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
 }
