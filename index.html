@@ -28,28 +28,29 @@
           <h3 class="text-center font-size">
             <span class="color-warning uppercase logo">Echo</span>
             <span class="color-light logo-2">Book</span>
+            <i class="fas fa-book"></i>
           </h3>
         </div>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link color-grey bold" href="#">Contact us</a>
+              <a class="nav-link color-light bold" href="contact.html"
+                >Contact us</a
+              >
             </li>
 
             <li class="nav-item">
-              <a class="nav-link color-light" href="#">Sign up</a>
+              <a class="nav-link color-light" href="signup.html">Sign Up</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link color-light" href="#">Sign in</a>
+              <a
+                class="nav-link color-light"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#signInModal"
+                >Sign In</a
+              >
             </li>
 
             <!-- Language selector -->
@@ -91,6 +92,66 @@
       </nav>
     </div>
 
+    <!-- Sign-in Modal -->
+
+    <div class="modal" tabindex="-1" id="signInModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title color-dark">Sign In</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="email" class="form-label color-dark"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label color-dark"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn custom-btn custom-btn:hover w-100 mt-3"
+              >
+                Sign In
+              </button>
+              <a href="btn btn-link">Forgot password?</a>
+            </form>
+          </div>
+
+          <div class="modal-footer text-center">
+            <p class="color-dark">
+              Don't have an account?
+              <a href="signup.html" class="btn btn-link">Sign up now</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Hero Section 1-->
     <header
       style="
@@ -104,7 +165,9 @@
         <p class="color-grey bold font-size-lg">
           Enjoy thousands of titles anytime, anywhere.
         </p>
-        <a href="#" class="btn custom-btn custom-btn:hover button-large"
+        <a
+          href="signup.html"
+          class="btn custom-btn custom-btn:hover button-large"
           >Enter the world of ECHO Book</a
         >
       </div>
@@ -116,7 +179,9 @@
       <div class="hero-text text-white text-center">
         <h1>Get your imagination going</h1>
         <p>Stories brought to life by captivating voices.</p>
-        <a href="#" class="btn custom-btn custom-btn:hover">Try for free</a>
+        <a href="signup.html" class="btn custom-btn custom-btn:hover mt-4"
+          >Register now and try for free</a
+        >
         <p class="price-info">$12.99 a month after 7 days. Cancel anytime.</p>
       </div>
       <!-- Right Side (Book Covers) -->
@@ -144,6 +209,60 @@
     </div>
 
     <!-- Pricing Section -->
+    <section class="container pricing-section">
+      <h2 class="pricing-title">Choose Your Plan</h2>
+      <p>Find the perfect plan for your reading and listening needs.</p>
+
+      <div class="row mt-5 justify-content-center">
+        <!-- Plan Basic -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card-pricing">
+            <h3>Basic</h3>
+            <p class="price">$5.99 / month</p>
+            <ul class="list-unstyled">
+              <li>📖 10 eBooks per Month</li>
+              <li>🎧 No Audiobooks</li>
+              <li>❌ No Offline Access</li>
+            </ul>
+            <button class="btn custom-btn custom-btn:hover mt-3">
+              Get Started
+            </button>
+          </div>
+        </div>
+
+        <!-- Plan Standard  -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card-pricing best-deal">
+            <h3>Standard</h3>
+            <p class="price">$12.99 / month</p>
+            <ul class="list-unstyled">
+              <li>📖 30 eBooks per Month</li>
+              <li>🎧 10 Audiobooks per Month</li>
+              <li>✅ Offline Access</li>
+            </ul>
+            <button class="btn custom-btn custom-btn:hover mt-3">
+              Get Started
+            </button>
+          </div>
+        </div>
+
+        <!-- Plan Premium -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card-pricing">
+            <h3>Premium</h3>
+            <p class="price">$19.99 / month</p>
+            <ul class="list-unstyled">
+              <li>📖 Unlimited eBooks</li>
+              <li>🎧 Unlimited Audiobooks</li>
+              <li>✅ Offline & Exclusive Content</li>
+            </ul>
+            <button class="btn custom-btn custom-btn:hover mt-3">
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Carousel Audiobooks -->
     <div class="container mt-5">
@@ -325,12 +444,16 @@
     <!-- Instructions Section -->
 
     <div class="white-container">
-      <h1 class="mb-5 text-center color-dark">How does it work?</h1>
+      <h1 class="mb-5 text-center color-accent font-size-xlg bold">
+        How does it work?
+      </h1>
       <div class="instructions-container container-center">
         <div class="row row-cols-2 color-dark">
           <div class="col">
             1. You create an account. Create your free account
-            <a class="nav-link color-accent" href="#">right here.</a>
+            <span
+              ><a class="color-accent" href="signup.html">right here.</a></span
+            >
           </div>
           <div class="col">
             2. Download the Echobook app. Available for Android and iPhone on
@@ -363,7 +486,7 @@
 
     <!-- FAQ Section-->
 
-    <div class="container mt-5 faq-container">
+    <div class="container faq-container container-center">
       <h2 class="faq-title text-center">Frequently Asked Questions</h2>
       <div class="accordion mt-4" id="faqAccordion">
         <div class="accordion-item">
@@ -468,12 +591,58 @@
 
     <!-- Footer -->
 
-    <footer class="bg-dark text-white text-center py-3">
-      <p></p>
+    <footer class="bg-dark py-4">
+      <div class="container-center d-flex justify-content-center">
+        <div>
+          <h4 class="fw-bold mb-4 color-accent font-size-xlg">
+            Looking for more?
+          </h4>
+          <h5 class="fw-bold mb-4 color-accent font-size-lg">Let's connect.</h5>
+          <div class="row">
+            <div class="col-md-12 mt-5 d-flex">
+              <a href="#" class="text-light" style="text-decoration: none"
+                >Home</a
+              >
+            </div>
+
+            <div class="col-md-12 mt-2">
+              <a href="#" class="text-light" style="text-decoration: none"
+                >About Us</a
+              >
+            </div>
+
+            <div class="col-md-12 mt-2">
+              <a
+                href="contact.html"
+                class="text-light"
+                style="text-decoration: none"
+                >Contact
+              </a>
+            </div>
+
+            <p class="mb-0 mt-3">
+              Copyright &copy; 2025 Echobook, Inc. All rights reserved.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h4>Get our free app</h4>
+          <img src="./assets/images/qr.PNG" width="200" alt="qr code" />
+          <p>
+            <i class="fa-brands fa-google-play"></i> Google Play
+            <i class="fa-brands fa-app-store-ios"></i> App Store
+          </p>
+        </div>
+      </div>
     </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
       crossorigin="anonymous"
     ></script>
   </body>
