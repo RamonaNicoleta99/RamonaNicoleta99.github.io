@@ -105,3 +105,41 @@ footer {
 .row-cols-2 {
   max-width: 500px;
 }
+
+.price-info {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  color: whitesmoke;
+}
+
+.pricing-section {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.pricing-title {
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card-pricing {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  transition: 0.4s ease-in-out;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 15px rgba(255, 165, 0, 0.1);
+}
+
+.card-pricing:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 6px 20px rgba(255, 165, 0, 0.3);
+}
+
+.price {
+  font-size: 30px;
+  color: #ffa500;
+  font-weight: bold;
+}
