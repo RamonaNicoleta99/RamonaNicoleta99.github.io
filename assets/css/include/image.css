@@ -1,0 +1,12 @@
+.image-container-home img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.image-container-contact img {
+  max-width: 100%;
+  height: auto;
+  margin-left: 10%;
+  opacity: 0.5;
+  border-radius: 10px;
+}
