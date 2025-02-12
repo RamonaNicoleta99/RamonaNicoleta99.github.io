@@ -2,3 +2,6 @@
   background-color: var(--primary-bg);
   color: var(--text-color);
 }
+.background-white {
+  background-color: whitesmoke;
+}

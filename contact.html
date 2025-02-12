@@ -52,67 +52,6 @@
               >
             </li>
 
-            <!-- Sign-in Modal -->
-
-            <div class="modal" tabindex="-1" id="signInModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title color-dark">Sign In</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <div class="mb-3">
-                        <label for="email" class="form-label color-dark"
-                          >Email Address</label
-                        >
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="email"
-                          placeholder="Enter your email"
-                          required
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="password" class="form-label color-dark"
-                          >Password</label
-                        >
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="password"
-                          placeholder="Enter your password"
-                          required
-                        />
-                      </div>
-
-                      <div class="mb-3">
-                        <button type="submit" class="btn btn-danger w-100">
-                          Sign In
-                        </button>
-                      </div>
-
-                      <a href="btn btn-link">Forgot password?</a>
-                    </form>
-                  </div>
-
-                  <div class="modal-footer text-center">
-                    <p class="color-dark">
-                      Don't have an account?
-                      <a href="signup.html" class="btn btn-link">Sign up now</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <!-- Language selector -->
 
             <li class="nav-item dropdown">
@@ -150,6 +89,65 @@
           </ul>
         </div>
       </nav>
+    </div>
+
+    <!-- Sign-in Modal -->
+
+    <div class="modal" tabindex="-1" id="signInModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title color-dark">Sign In</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="email" class="form-label color-dark"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label color-dark"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-danger w-100">
+                  Sign In
+                </button>
+              </div>
+              <a href="btn btn-link">Forgot password?</a>
+            </form>
+          </div>
+
+          <div class="modal-footer text-center">
+            <p class="color-dark">
+              Don't have an account?
+              <a href="signup.html" class="btn btn-link">Sign up now</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="container-center d-flex justify-content-center py-5">
@@ -206,62 +204,58 @@
         <img src="./assets/images/imgbooks.webp" alt="Contact image" />
       </div>
     </div>
-    <footer>
-      <!-- Footer -->
+    <!-- Footer -->
 
-      <footer class="bg-dark py-4">
-        <div class="container-center d-flex justify-content-between">
-          <div>
-            <h4 class="fw-bold mb-4 color-accent font-size-xlg">
-              Looking for more?
-            </h4>
-            <h5 class="fw-bold mb-4 color-accent font-size-lg">
-              Let's connect.
-            </h5>
-            <div class="row">
-              <div class="col-md-12 mt-5 d-flex">
-                <a
-                  href="index.html"
-                  class="text-light"
-                  style="text-decoration: none"
-                  >Home</a
-                >
-              </div>
-
-              <div class="col-md-12 mt-2">
-                <a
-                  href="about.html"
-                  class="text-light"
-                  style="text-decoration: none"
-                  >About Us</a
-                >
-              </div>
-
-              <div class="col-md-12 mt-2">
-                <a
-                  href="contact.html"
-                  class="text-light"
-                  style="text-decoration: none"
-                  >Contact
-                </a>
-              </div>
-
-              <p class="mb-0 mt-3">
-                Copyright &copy; 2025 Echobook, Inc. All rights reserved.
-              </p>
+    <footer class="bg-dark py-4">
+      <div class="container-center d-flex justify-content-center">
+        <div>
+          <h4 class="fw-bold mb-4 color-accent font-size-xlg">
+            Looking for more?
+          </h4>
+          <h5 class="fw-bold mb-4 color-accent font-size-lg">Let's connect.</h5>
+          <div class="row">
+            <div class="col-md-12 mt-5 d-flex">
+              <a
+                href="index.html"
+                class="text-light"
+                style="text-decoration: none"
+                >Home</a
+              >
             </div>
-          </div>
 
-          <div>
-            <h4>Get our free app</h4>
-            <img src="./assets/images/qr.PNG" width="200" alt="qr code" />
-            <p>
-              <i class="fa-brands fa-google-play"></i> Google Play
-              <i class="fa-brands fa-app-store-ios"></i> App Store
+            <div class="col-md-12 mt-2">
+              <a
+                href="about.html"
+                class="text-light"
+                style="text-decoration: none"
+                >About Us</a
+              >
+            </div>
+
+            <div class="col-md-12 mt-2">
+              <a
+                href="contact.html"
+                class="text-light"
+                style="text-decoration: none"
+                >Contact
+              </a>
+            </div>
+
+            <p class="mb-0 mt-3">
+              Copyright &copy; 2025 Echobook, Inc. All rights reserved.
             </p>
           </div>
         </div>
-      </footer>
+
+        <div>
+          <h4>Get our free app</h4>
+          <img src="./assets/images/qr.PNG" width="200" alt="qr code" />
+          <p>
+            <i class="fa-brands fa-google-play"></i> Google Play
+            <i class="fa-brands fa-app-store-ios"></i> App Store
+          </p>
+        </div>
+      </div>
     </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
