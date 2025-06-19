@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 
-const Header = ({ darkMode, toggleDarkMode }) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
-
-  const toggleModal = (type) => {
-    setShowSignIn(type === "signin");
-    setShowSignUp(type === "signup");
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark" ? true : false;
+  });
+    
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
+    
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
   };
 
   const closeModals = () => {
@@ -30,8 +38,8 @@ const Header = ({ darkMode, toggleDarkMode }) => {
           <nav className="hidden md:flex space-x-6 items-center">
             <Link to="/" className="hover:underline underline-offset-4">Home</Link>
             <Link to="/attractions" className="hover:underline underline-offset-4">Attractions</Link>
-            <button onClick={() => toggleModal("signin")} className="text-sm font-medium hover:underline">Sign In</button>
-            <button onClick={() => toggleModal("signup")} className="text-sm font-medium hover:underline">Sign Up</button>
+            <button onClick={() => setShowSignIn(true)} className="text-sm font-medium hover:underline">Sign In</button>
+            <button onClick={() => setShowSignUp(true)} className="text-sm font-medium hover:underline">Sign Up</button>
           </nav>
 
           <button
@@ -67,8 +75,8 @@ const Header = ({ darkMode, toggleDarkMode }) => {
           <nav className="flex flex-col space-y-2">
             <Link to="/" onClick={() => setMenuOpen(false)} className="hover:underline">Home</Link>
             <Link to="/favorites" onClick={() => setMenuOpen(false)} className="hover:underline">Favorites</Link>
-            <button onClick={() => toggleModal("signin")} className="text-left">Sign In</button>
-            <button onClick={() => toggleModal("signup")} className="text-left">Sign Up</button>
+            <button onClick={() => setShowSignIn(true)} className="text-left">Sign In</button>
+            <button onClick={() => setShowSignUp(true)} className="text-left">Sign Up</button>
           </nav>
         </div>
       )}
