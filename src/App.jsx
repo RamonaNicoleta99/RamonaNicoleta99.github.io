@@ -4,6 +4,7 @@ import HomePage from "./components/pages/HomePage";
 import Header from "./components/containers/Header";
 import DestinationPage from "./components/pages/DestinationPage";
 import Footer from "./components/containers/Footer";
+import ContactUsPage from "./components/pages/ContactUsPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/destinations/:city" element={<DestinationPage />} />
+        <Route path="/contact" element={<ContactUsPage />} />
       </Routes>
       <Footer />
     </HashRouter>

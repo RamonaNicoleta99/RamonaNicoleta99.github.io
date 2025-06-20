@@ -6,6 +6,7 @@
   --card-bg: #f9f9f9;
   --card-text: #1a1a1a;
   --accent: #2563eb; /* blue-600 */
+  --button-color: #8296ee;
 }
 
 [data-theme="dark"] {
@@ -14,6 +15,7 @@
   --card-bg: #1e293b; /* slate-800 */
   --card-text: #e2e8f0; /* slate-200 */
   --accent: #60a5fa; /* blue-400 */
+  --button-color: #363c77;
 }
 
 body {
