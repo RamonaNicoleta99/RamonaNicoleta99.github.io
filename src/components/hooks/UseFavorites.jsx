@@ -25,7 +25,7 @@ const useFavorites = (city) => {
   const toggleFavorite = () => {
     if (!city || !city.title) return;
 
-    setDisabled(true); // 👈 dezactivează
+    setDisabled(true);
     setTimeout(() => setDisabled(false), 5000);
 
     const updatedFavorites = favorites.some((item) => item.title === city.title)

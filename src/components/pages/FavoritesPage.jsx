@@ -9,8 +9,6 @@ export default function FavoritesPage() {
     setFavorites(data);
   }, []);
 
-  console.log(favorites);
-
   return (
     <div className="min-h-screen px-4 py-12 bg-[var(--bg)] text-[var(--text)] transition-all">
       <div className="max-w-[1200px] mx-auto space-y-6">
