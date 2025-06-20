@@ -22,7 +22,7 @@ const AttractionsCard = ({ place }) => {
           rel="noopener noreferrer"
           className="text-sm text-[var(--accent)] font-medium hover:underline"
         >
-          Citește mai mult
+          Read more
         </a>
       </div>
     </div>
