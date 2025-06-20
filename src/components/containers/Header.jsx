@@ -53,6 +53,12 @@ const Header = () => {
             <Link to="/contact" className="hover:underline underline-offset-4">
               Contact
             </Link>
+            <Link
+              to="/favorites"
+              className="hover:underline underline-offset-4"
+            >
+              Favorites
+            </Link>
             <button
               onClick={() => setShowSignIn(true)}
               className="text-sm font-medium hover:underline"
@@ -119,6 +125,12 @@ const Header = () => {
             </Link>
             <Link to="/contact" className="hover:underline underline-offset-4">
               Contact
+            </Link>
+            <Link
+              to="/favorites"
+              className="hover:underline underline-offset-4"
+            >
+              Favorites
             </Link>
             <button onClick={() => setShowSignIn(true)} className="text-left">
               Sign In
