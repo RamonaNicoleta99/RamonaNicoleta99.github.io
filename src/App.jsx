@@ -6,6 +6,7 @@ import DestinationPage from "./components/pages/DestinationPage";
 import Footer from "./components/containers/Footer";
 import ContactUsPage from "./components/pages/ContactUsPage";
 import FavoritesPage from "./components/pages/FavoritesPage";
+import CalendarPage from "./components/pages/CalendarPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/destinations/:city" element={<DestinationPage />} />
         <Route path="/contact" element={<ContactUsPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/calendar" element={<CalendarPage />} />
       </Routes>
       <Footer />
     </HashRouter>

@@ -59,6 +59,9 @@ const Header = () => {
             >
               Favorites
             </Link>
+            <Link to="/calendar" className="hover:underline underline-offset-4">
+              Planner
+            </Link>
             <button
               onClick={() => setShowSignIn(true)}
               className="text-sm font-medium hover:underline"
@@ -131,6 +134,9 @@ const Header = () => {
               className="hover:underline underline-offset-4"
             >
               Favorites
+            </Link>
+            <Link to="/calendar" className="hover:underline underline-offset-4">
+              Planner
             </Link>
             <button onClick={() => setShowSignIn(true)} className="text-left">
               Sign In
