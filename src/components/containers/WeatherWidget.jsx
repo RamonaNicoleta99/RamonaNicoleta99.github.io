@@ -16,7 +16,7 @@ const weatherEmoji = (code) => {
     80: "🌧️", // rain showers
     95: "⛈️", // thunderstorm
   };
-  return map[code] || "❓";
+  return map[code] || "☁️";
 };
 
 function WeatherForecast7Days({ city }) {

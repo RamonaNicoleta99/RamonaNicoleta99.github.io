@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import background from "../../assets/home-background.jpg";
+import background from "../../assets/home-bg.jpg";
 import DestinationsCarousel from "../DestinationsCarousel";
 import { useNavigate } from "react-router";
+import AboutUs from "../containers/AboutUs";
 
 function HomePage() {
   const [customCity, setCustomCity] = useState("");
@@ -33,7 +34,7 @@ function HomePage() {
   return (
     <>
       <div
-        className="relative h-[70vh] bg-cover bg-center"
+        className="relative h-[70vh] bg-cover"
         style={{
           backgroundImage: `url(${background})`,
         }}
@@ -60,7 +61,7 @@ function HomePage() {
                   {suggestions.map((s, i) => (
                     <li
                       key={i}
-                      className="px-3 py-2 hover:bg-[var(--accent)] hover:text-white cursor-pointer"
+                      className="px-3 py-2 hover:bg-[var(--accent)] text-[var(--text)] hover:text-white cursor-pointer"
                       onClick={() =>
                         navigate(`/destinations/${s.properties.name}`)
                       }
@@ -76,6 +77,7 @@ function HomePage() {
       </div>
 
       <DestinationsCarousel></DestinationsCarousel>
+      <AboutUs></AboutUs>
     </>
   );
 }

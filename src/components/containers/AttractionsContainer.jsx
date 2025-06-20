@@ -15,7 +15,6 @@ function AttractionsContainer({ city }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const fetchData = async (city) => {
-    console.log("fetch");
     setLoading(true);
     try {
       const res = await fetch(
