@@ -3,6 +3,7 @@ import "./App.css";
 import HomePage from "./components/pages/HomePage";
 import Header from "./components/containers/Header";
 import DestinationPage from "./components/pages/DestinationPage";
+import Footer from "./components/containers/Footer";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/destinations/:city" element={<DestinationPage />} />
       </Routes>
+      <Footer />
     </HashRouter>
   );
 }
