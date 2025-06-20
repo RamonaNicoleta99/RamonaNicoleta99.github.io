@@ -9,7 +9,7 @@ function DestinationPage() {
   return (
     <>
       <div className="max-w-[1100px] mx-auto mt-8 mb-8">
-        <CityInfoContainer city={city} />
+        <CityInfoContainer city={city} isFetch={true} />
         <AttractionsContainer city={city}></AttractionsContainer>
         <WeatherWidget city={city}></WeatherWidget>
       </div>
