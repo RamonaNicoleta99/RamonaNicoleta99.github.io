@@ -9,12 +9,15 @@ const Header = () => {
     const savedTheme = localStorage.getItem("theme");
     return savedTheme === "dark" ? true : false;
   });
-    
+
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode ? "dark" : "light"
+    );
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
-    
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -24,11 +27,19 @@ const Header = () => {
     setShowSignUp(false);
   };
 
-  const modalClass = `${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`;
-  const inputClass = `w-full mb-4 p-3 rounded border border-gray-300 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}`;
+  const modalClass = `${
+    darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+  }`;
+  const inputClass = `w-full mb-4 p-3 rounded border border-gray-300 ${
+    darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+  }`;
 
   return (
-    <header className={`shadow-md sticky top-0 z-50 w-full transition ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}>
+    <header
+      className={`shadow-md sticky top-0 z-50 w-full transition ${
+        darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+      }`}
+    >
       <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
         <Link to="/" className="text-2xl font-bold tracking-wide">
           🌍 Travel Planner
@@ -36,10 +47,21 @@ const Header = () => {
 
         <div className="flex items-center space-x-4">
           <nav className="hidden md:flex space-x-6 items-center">
-            <Link to="/" className="hover:underline underline-offset-4">Home</Link>
-            <Link to="/attractions" className="hover:underline underline-offset-4">Attractions</Link>
-            <button onClick={() => setShowSignIn(true)} className="text-sm font-medium hover:underline">Sign In</button>
-            <button onClick={() => setShowSignUp(true)} className="text-sm font-medium hover:underline">Sign Up</button>
+            <Link to="/" className="hover:underline underline-offset-4">
+              Home
+            </Link>
+            <button
+              onClick={() => setShowSignIn(true)}
+              className="text-sm font-medium hover:underline"
+            >
+              Sign In
+            </button>
+            <button
+              onClick={() => setShowSignUp(true)}
+              className="text-sm font-medium hover:underline"
+            >
+              Sign Up
+            </button>
           </nav>
 
           <button
@@ -61,9 +83,17 @@ const Header = () => {
               viewBox="0 0 24 24"
             >
               {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -71,12 +101,25 @@ const Header = () => {
       </div>
 
       {menuOpen && (
-        <div className={`md:hidden w-full px-6 pb-4 transition ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}>
+        <div
+          className={`md:hidden w-full px-6 pb-4 transition ${
+            darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+          }`}
+        >
           <nav className="flex flex-col space-y-2">
-            <Link to="/" onClick={() => setMenuOpen(false)} className="hover:underline">Home</Link>
-            <Link to="/favorites" onClick={() => setMenuOpen(false)} className="hover:underline">Favorites</Link>
-            <button onClick={() => setShowSignIn(true)} className="text-left">Sign In</button>
-            <button onClick={() => setShowSignUp(true)} className="text-left">Sign Up</button>
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              className="hover:underline"
+            >
+              Home
+            </Link>
+            <button onClick={() => setShowSignIn(true)} className="text-left">
+              Sign In
+            </button>
+            <button onClick={() => setShowSignUp(true)} className="text-left">
+              Sign Up
+            </button>
           </nav>
         </div>
       )}
@@ -84,12 +127,25 @@ const Header = () => {
       {/* Sign In Modal */}
       {showSignIn && (
         <div className="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm bg-black/30">
-          <div className={`w-full max-w-md mx-auto ${modalClass} p-8 rounded-xl shadow-2xl relative border border-gray-300 dark:border-gray-700`}>
+          <div
+            className={`w-full max-w-md mx-auto ${modalClass} p-8 rounded-xl shadow-2xl relative border border-gray-300 dark:border-gray-700`}
+          >
             <h2 className="text-2xl font-bold mb-6">Sign In</h2>
             <input type="email" placeholder="Email" className={inputClass} />
-            <input type="password" placeholder="Password" className={inputClass} />
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-lg">Sign In</button>
-            <button onClick={closeModals} className="absolute top-2 right-3 text-2xl hover:text-red-500">×</button>
+            <input
+              type="password"
+              placeholder="Password"
+              className={inputClass}
+            />
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-lg">
+              Sign In
+            </button>
+            <button
+              onClick={closeModals}
+              className="absolute top-2 right-3 text-2xl hover:text-red-500"
+            >
+              ×
+            </button>
           </div>
         </div>
       )}
@@ -97,13 +153,26 @@ const Header = () => {
       {/* Sign Up Modal */}
       {showSignUp && (
         <div className="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm bg-black/30">
-          <div className={`w-full max-w-md mx-auto ${modalClass} p-8 rounded-xl shadow-2xl relative border border-gray-300 dark:border-gray-700`}>
+          <div
+            className={`w-full max-w-md mx-auto ${modalClass} p-8 rounded-xl shadow-2xl relative border border-gray-300 dark:border-gray-700`}
+          >
             <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
             <input type="text" placeholder="Name" className={inputClass} />
             <input type="email" placeholder="Email" className={inputClass} />
-            <input type="password" placeholder="Password" className={inputClass} />
-            <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded text-lg">Create Account</button>
-            <button onClick={closeModals} className="absolute top-2 right-3 text-2xl hover:text-red-500">×</button>
+            <input
+              type="password"
+              placeholder="Password"
+              className={inputClass}
+            />
+            <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded text-lg">
+              Create Account
+            </button>
+            <button
+              onClick={closeModals}
+              className="absolute top-2 right-3 text-2xl hover:text-red-500"
+            >
+              ×
+            </button>
           </div>
         </div>
       )}
