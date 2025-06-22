@@ -4,7 +4,10 @@ export default function Footer() {
   return (
     <footer className="bg-[var(--card-bg)] text-[var(--text)] py-6 mt-16 shadow-inner">
       <div className="max-w-[1600px] mx-auto px-4 flex flex-col items-start gap-1 text-sm">
-        <p className="font-semibold text-lg">Travel Planner</p>
+        <p className="font-semibold text-lg">
+          <span className="font-serif">Travel </span>
+          <span className="font-mono">Planner</span>
+        </p>
         <p className="italic text-base">
           Start exploring the world — one destination at a time.
         </p>

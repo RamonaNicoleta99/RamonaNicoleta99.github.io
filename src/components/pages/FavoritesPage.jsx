@@ -1,12 +1,25 @@
 import { useEffect, useState } from "react";
-import CityInfoContainer from "../containers/CityInfoContainer";
+import FavoritesCityContainer from "../containers/FavoritesCityContainer";
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
+  const loadFavorites = () => {
     const data = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(data);
+  };
+
+  useEffect(() => {
+    loadFavorites();
+  }, []);
+
+  // ASCULTĂ și la modificări ulterioare în localStorage (via StorageEvent sau forțat)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadFavorites();
+    }, 300); // check periodic (poate fi optimizat cu context sau observer)
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -22,7 +35,7 @@ export default function FavoritesPage() {
           </p>
         ) : (
           favorites.map((city, index) => (
-            <CityInfoContainer key={index} city={city.title} />
+            <FavoritesCityContainer key={index} city={city} />
           ))
         )}
       </div>
