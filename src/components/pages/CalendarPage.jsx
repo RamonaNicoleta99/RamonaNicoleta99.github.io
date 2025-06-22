@@ -3,6 +3,7 @@ import { Calendar, Views, dateFnsLocalizer } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay, addHours } from "date-fns";
 import enUS from "date-fns/locale/en-US";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import useTravel from "../hooks/useTravel";
 
 const locales = { "en-US": enUS };
 const localizer = dateFnsLocalizer({
@@ -14,22 +15,7 @@ const localizer = dateFnsLocalizer({
 });
 
 export default function CalendarPage() {
-  const [events, setEvents] = useState(() => {
-    const stored = localStorage.getItem("travelEvents");
-    if (!stored) return [];
-
-    try {
-      const parsed = JSON.parse(stored);
-      return parsed.map((event) => ({
-        ...event,
-        start: new Date(event.start),
-        end: new Date(event.end),
-      }));
-    } catch (err) {
-      console.error("Error parsing events:", err);
-      return [];
-    }
-  });
+  const { events, updateEvents } = useTravel();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({ start: null });
@@ -38,10 +24,6 @@ export default function CalendarPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [eventToDelete, setEventToDelete] = useState(null);
   const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
-  useEffect(() => {
-    localStorage.setItem("travelEvents", JSON.stringify(events));
-  }, [events]);
 
   const handleSelectSlot = ({ start, end }) => {
     setModalData({ start, end });
@@ -52,7 +34,7 @@ export default function CalendarPage() {
 
   const confirmDelete = () => {
     if (eventToDelete) {
-      setEvents((prev) => prev.filter((e) => e !== eventToDelete));
+      updateEvents(events.filter((e) => e !== eventToDelete));
       setEventToDelete(null);
       setShowDeleteModal(false);
     }
@@ -62,10 +44,15 @@ export default function CalendarPage() {
     if (!selectedCity || !activity || !modalData.start || !modalData.end)
       return;
 
+    const adjustedEnd = new Date(modalData.end);
+    adjustedEnd.setDate(adjustedEnd.getDate() - 1);
+
     const days = [];
     const current = new Date(modalData.start);
+    current.setHours(0, 0, 0, 0);
+    adjustedEnd.setHours(0, 0, 0, 0);
 
-    while (current <= modalData.end) {
+    while (current <= adjustedEnd) {
       days.push(new Date(current));
       current.setDate(current.getDate() + 1);
     }
@@ -76,7 +63,7 @@ export default function CalendarPage() {
       end: addHours(new Date(day), 1),
     }));
 
-    setEvents((prev) => [...prev, ...newEvents]);
+    updateEvents([...events, ...newEvents]);
     setShowModal(false);
   };
 

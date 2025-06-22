@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import useFavorites from "../hooks/UseFavorites";
 
-function CityInfoContainer({ city }) {
+function CityInfoContainer({ city, onFavoritesChange }) {
   const [info, setInfo] = useState(null);
   const [error, setError] = useState(null);
-  const { buttonIcon, toggleFavorite, disabled } = useFavorites(info);
-  console.log(city);
+  const { toggleFavorite, isCityFavorite, disabled } = useFavorites();
 
   const fetchCityInfo = async (cityName) => {
     try {
@@ -40,17 +39,25 @@ function CityInfoContainer({ city }) {
     }
   }, [city]);
 
+  const handleToggle = () => {
+    toggleFavorite(info);
+    if (onFavoritesChange) {
+      const updated = JSON.parse(localStorage.getItem("favorites") || "[]");
+      onFavoritesChange(updated);
+    }
+  };
+
   if (error) return <div className="text-red-500">{error}</div>;
   if (!info) return <div className="text-gray-400">Loading city info...</div>;
 
   return (
     <div className="rounded-xl p-6 bg-[var(--card-bg)] text-[var(--card-text)] shadow transition-all relative">
       <button
-        onClick={toggleFavorite}
+        onClick={handleToggle}
         className="absolute top-2 right-2 text-xl p-1 hover:scale-110 transition"
         disabled={disabled}
       >
-        {buttonIcon}
+        {isCityFavorite(info) ? "❤" : "➕"}
       </button>
       <h2 className="text-2xl font-bold mb-2">{info.title}</h2>
       {info.description && (
