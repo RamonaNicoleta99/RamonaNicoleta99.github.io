@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function Accordeon({ question, answer }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // state boolean care indica daca acordeonul e deschis/inchis
 
   return (
     <div className="border-b border-gray-300 rounded-lg">
@@ -11,6 +11,7 @@ export default function Accordeon({ question, answer }) {
       >
         {question}
       </button>
+      {/* Daca state-ul e true, afisam raspunsul*/}
       {open && (
         <div className="pb-4 text-lg text-[var(--card-text)] mt-2">
           {answer}

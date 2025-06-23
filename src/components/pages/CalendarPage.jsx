@@ -16,16 +16,17 @@ const localizer = dateFnsLocalizer({
 
 export default function CalendarPage() {
   const { events, updateEvents } = useTravel();
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState({ start: null });
-  const [selectedCity, setSelectedCity] = useState("");
-  const [activity, setActivity] = useState("");
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [eventToDelete, setEventToDelete] = useState(null);
-  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  const [currentDate, setCurrentDate] = useState(new Date()); // data curenta a calendarului, intialziata cu data curenta
+  const [showModal, setShowModal] = useState(false); // afiseaza sau ascunde modala pentru activitati
+  const [modalData, setModalData] = useState({ start: null }); // retine slotul selectat pentru noua activitate
+  const [selectedCity, setSelectedCity] = useState(""); // orasul ales pentru activitate
+  const [activity, setActivity] = useState(""); // activitatea introdusa de user
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // afiseaza sau ascunde modalul de stergere activitate
+  const [eventToDelete, setEventToDelete] = useState(null); // evenimentul selectat pentru stergere
+  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); // retinem orasele favorites din local storage intr-o constanta
 
   const handleSelectSlot = ({ start, end }) => {
+    // funbctie de deschidere a modalului de adaugare activitate, apelata cand este selectata o zi sau o perioada in calendar
     setModalData({ start, end });
     setSelectedCity(favorites[0]?.title || "");
     setActivity("");
@@ -33,6 +34,7 @@ export default function CalendarPage() {
   };
 
   const confirmDelete = () => {
+    // functie de stergere a unui eveniment din calendar
     if (eventToDelete) {
       updateEvents(events.filter((e) => e !== eventToDelete));
       setEventToDelete(null);
@@ -41,6 +43,7 @@ export default function CalendarPage() {
   };
 
   const handleSave = () => {
+    // functie de salvare a activitatii date de user in zilele selectate de acesta
     if (!selectedCity || !activity || !modalData.start || !modalData.end)
       return;
 
@@ -92,12 +95,11 @@ export default function CalendarPage() {
           }}
         />
       </div>
-
+      {/* modala de adaugare activitatii, afisata doar daca state-ul showModal este true */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm bg-black/30">
           <div className="w-full max-w-md mx-auto bg-[var(--card-bg)] text-[var(--card-text)] p-8 rounded-xl shadow-2xl relative border border-gray-300 dark:border-gray-700">
             <h2 className="text-xl font-bold mb-4">Add Activity</h2>
-
             <label className="block mb-2 text-sm font-medium">City</label>
             {favorites.length > 0 ? (
               <select
@@ -105,19 +107,23 @@ export default function CalendarPage() {
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className="w-full p-2 mb-4 rounded bg-[var(--bg)] border border-gray-400 text-[var(--text)]"
               >
+                {/* la select, schimbam valoarea state-ului corespunzator orasului selectat */}
                 {favorites.map((f, idx) => (
                   <option key={idx} value={f.title}>
                     {f.title}
                   </option>
                 ))}
+                {/* folosim map pentru a pune in dropdown toate orasele din favorties */}
               </select>
             ) : (
               <p className="mb-4 text-base italic text-[var(--card-text)]">
                 Please add cities to your favorites to plan an activity.
               </p>
             )}
+            {/* in caz ca nu sunt orase in favorties, afisam un mesaj corespunzator */}
 
             <label className="block mb-2 text-sm font-medium">Activity</label>
+            {/* folosim on change pentru schimbarea state-ului de activitate */}
             <input
               type="text"
               value={activity}
@@ -125,13 +131,13 @@ export default function CalendarPage() {
               placeholder="e.g. Visit museum"
               className="w-full p-2 rounded bg-[var(--bg)] border border-gray-400 text-[var(--text)]"
             />
-
             <button
               onClick={handleSave}
               className="mt-4 hover:bg-blue-700 !bg-[var(--button-color)] text-white px-4 py-2 rounded"
             >
               Save
             </button>
+            {/* apelam functia de salvare folosind onClick pe butonul de save */}
             <button
               onClick={() => setShowModal(false)}
               className="absolute top-2 right-3 text-2xl hover:text-red-500 "
@@ -142,6 +148,7 @@ export default function CalendarPage() {
         </div>
       )}
 
+      {/* modala de stergere a activitatilor, afisata doar daca state-ul showDeleteModal este true */}
       {showDeleteModal && (
         <div className="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm bg-black/30">
           <div className="bg-[var(--card-bg)] text-[var(--card-text)] border border-gray-300 dark:border-gray-700 p-6 rounded-lg shadow-xl max-w-sm w-full relative">
@@ -163,6 +170,7 @@ export default function CalendarPage() {
               >
                 Delete
               </button>
+              {/* apelam functia de stergere folosind onClick pe butonul de Delete */}
             </div>
           </div>
         </div>

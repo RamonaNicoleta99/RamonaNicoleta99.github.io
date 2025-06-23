@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import useFavorites from "../hooks/UseFavorites";
 
-function CityInfoContainer({ city, onFavoritesChange }) {
-  const [info, setInfo] = useState(null);
-  const [error, setError] = useState(null);
-  const { toggleFavorite, isCityFavorite, disabled } = useFavorites();
+function CityInfoContainer({ city }) {
+  const [info, setInfo] = useState(null); // obiect cu infromatii despre orasul curent
+  const [error, setError] = useState(null); // state pentru erori, in caz ca orasul nu este gasit pe fetch
+  const { toggleFavorite, isCityFavorite, disabled } = useFavorites(); // apelam hook-ul de favorites
 
+  // fetch pentru luarea de informatii despre oras
   const fetchCityInfo = async (cityName) => {
     try {
       setError(null);
@@ -19,6 +20,7 @@ function CityInfoContainer({ city, onFavoritesChange }) {
 
       if (data.type === "standard") {
         setInfo({
+          // setam informatiile despre oras in state-ul info
           title: data.title,
           description: data.description,
           extract: data.extract,
@@ -26,7 +28,7 @@ function CityInfoContainer({ city, onFavoritesChange }) {
           url: data.content_urls?.desktop?.page,
         });
       } else {
-        setError("No info found for this city.");
+        setError("No info found for this city."); // in caz ca orasul nu exista pe Wikipedia, stocam in sate-ul de eroare un mesaj corespuznator
       }
     } catch (err) {
       setError("Failed to fetch city info.");
@@ -37,14 +39,11 @@ function CityInfoContainer({ city, onFavoritesChange }) {
     if (city) {
       fetchCityInfo(city);
     }
-  }, [city]);
+  }, [city]); // cand orasul se schimba, initiem fetch-ul
 
   const handleToggle = () => {
+    // functie de handle care updateaza variabila favorites din local storage folosind functia din hook
     toggleFavorite(info);
-    if (onFavoritesChange) {
-      const updated = JSON.parse(localStorage.getItem("favorites") || "[]");
-      onFavoritesChange(updated);
-    }
   };
 
   if (error) return <div className="text-red-500">{error}</div>;

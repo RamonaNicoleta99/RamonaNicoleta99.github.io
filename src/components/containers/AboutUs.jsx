@@ -31,7 +31,8 @@ export default function AboutUs() {
               contact us
             </Link>{" "}
             if you have any questions or suggestions.
-          </p>
+          </p>{" "}
+          {/* link catre pagina de contact */}
         </div>
         <a
           href="https://en.wikipedia.org/wiki/Travel"

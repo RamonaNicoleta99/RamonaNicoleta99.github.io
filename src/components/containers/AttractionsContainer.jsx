@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import AttractionsCard from "../containers/AttractionsCard";
 
+// constanta pentru dropdownul de sortare
 const sortOptions = [
   { label: "A-Z", value: "az" },
   { label: "Z-A", value: "za" },
@@ -9,13 +10,14 @@ const sortOptions = [
 
 function AttractionsContainer({ city }) {
   const itemsPerPage = 6;
-  const [attractions, setattractions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [sort, setSort] = useState("az");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [attractions, setattractions] = useState([]); // state care stocheaza atractiile returnate de fetch
+  const [loading, setLoading] = useState(false); // state boolean de loading
+  const [sort, setSort] = useState("az"); // state pentru dropdownul de sortare
+  const [currentPage, setCurrentPage] = useState(1); // state pentru paginare
 
   const fetchData = async (city) => {
-    setLoading(true);
+    // fetch de luare a destinatiilor
+    setLoading(true); // setam loading-ul pe true
     try {
       const res = await fetch(
         `https://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Tourist_attractions_in_${city}&cmlimit=50&format=json&origin=*`
@@ -35,18 +37,19 @@ function AttractionsContainer({ city }) {
       );
 
       const sorted = detailed.sort((a, b) => {
+        // sortarea valorilor returnate de fetch
         if (sort === "az") return a.title.localeCompare(b.title);
         if (sort === "za") return b.title.localeCompare(a.title);
         return 0;
       });
 
-      setattractions(sorted);
+      setattractions(sorted); // setam state-ul de atractii cu valorile sortate returnate de fetch
       setCurrentPage(1);
     } catch (err) {
       console.error("Wikipedia fetch error:", err);
       setattractions([]);
     } finally {
-      setLoading(false);
+      setLoading(false); // setam loading-ul pe false
     }
   };
 
@@ -54,11 +57,11 @@ function AttractionsContainer({ city }) {
     if (city) {
       fetchData(city.replaceAll(" ", "_"));
     }
-  }, [city, sort]);
+  }, [city, sort]); // daca valorile orasului sau ale dropdown-ul de sortare se schimba, fetchim iar datele
 
   const indexOfLast = currentPage * itemsPerPage;
   const indexOfFirst = indexOfLast - itemsPerPage;
-  const currentItems = attractions.slice(indexOfFirst, indexOfLast);
+  const currentItems = attractions.slice(indexOfFirst, indexOfLast); // constante de paginare
   const totalPages = Math.ceil(attractions.length / itemsPerPage);
 
   return (
@@ -77,6 +80,7 @@ function AttractionsContainer({ city }) {
             onChange={(e) => setSort(e.target.value)}
             className="px-3 py-2 rounded-md bg-[var(--card-bg)] text-[var(--text)] border border-gray-300 shadow-sm"
           >
+            {/* la schimbarea valorii din dropdown, schimbam si valoarea state-ului de sortare */}
             {sortOptions.map((option) => (
               <option
                 key={option.value}
@@ -86,10 +90,11 @@ function AttractionsContainer({ city }) {
                 {option.label}
               </option>
             ))}
+            {/* folosind map afisam valorile din constanta de sortare */}
           </select>
         </div>
       </div>
-
+      {/* daca state-ul de loading e true, afisam componenta de loader, in caz contrar, folosind map, afisam cate o componenta de AttractionCard pentru fiecare atractie */}
       {loading ? (
         <LoadingSpinner />
       ) : currentItems.length > 0 ? (

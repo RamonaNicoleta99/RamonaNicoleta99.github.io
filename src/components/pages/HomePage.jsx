@@ -6,30 +6,32 @@ import { useNavigate } from "react-router";
 import AboutUs from "../containers/AboutUs";
 
 function HomePage() {
-  const [customCity, setCustomCity] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const navigate = useNavigate();
+  const [customCity, setCustomCity] = useState(""); // state pentru textul de input
+  const [suggestions, setSuggestions] = useState([]); // state care retine sugestiile returnate de fetch
+  const navigate = useNavigate(); // hook react pentru navigare intre pagini
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (customCity.length >= 2) {
+        // daca inputul are mai mult de 2 caractere fetchuim datele
         fetch(`https://photon.komoot.io/api/?q=${customCity}&limit=100`)
           .then((r) => r.json())
           .then((d) => {
             const onlyCities = d.features.filter(
+              // filtrare pentru orase
               (f) =>
                 f.properties.osm_value === "city" ||
                 f.properties.osm_value === "town"
             );
-            setSuggestions(onlyCities);
+            setSuggestions(onlyCities); // setam sugestiile returnate de fetch si ulterior filtrate
           })
           .catch(console.error);
       } else {
         setSuggestions([]);
       }
-    }, 300);
+    }, 300); // delay de cautare
     return () => clearTimeout(timer);
-  }, [customCity]);
+  }, [customCity]); // apelat cand inputul se schimba
 
   return (
     <>
@@ -56,6 +58,7 @@ function HomePage() {
                 value={customCity}
                 onChange={(e) => setCustomCity(e.target.value)}
               />
+              {/* valoarea inputului e data de valoarea state-ului, pe on change schimbam valoarea state-ului */}
               {suggestions.length > 0 && (
                 <ul className="absolute top-full left-0 w-full bg-[var(--card-bg)] shadow-lg rounded mt-1 z-10 max-h-48 overflow-auto">
                   {suggestions.map((s, i) => (
@@ -69,6 +72,7 @@ function HomePage() {
                       {s.properties.name}, {s.properties.country}
                     </li>
                   ))}
+                  {/* daca avem sugestii, folosim un map pentru a le afisa intr-o lista. Pe fiecare adaugam navigate la on click */}
                 </ul>
               )}
             </div>

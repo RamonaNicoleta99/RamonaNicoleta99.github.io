@@ -1,6 +1,5 @@
 const AttractionsCard = ({ place }) => {
-  if (!place?.content_urls) return null;
-
+  // afisam date despre destinatii folosind parametrul primit de la parinte
   return (
     <div className="bg-[var(--card-bg)] text-[var(--card-text)] rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col">
       {place.thumbnail?.source && (

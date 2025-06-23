@@ -20,12 +20,13 @@ const weatherEmoji = (code) => {
 };
 
 function WeatherForecast7Days({ city }) {
-  const [forecast, setForecast] = useState(null);
-  const [error, setError] = useState(null);
-  const [lat, setLat] = useState(null);
-  const [long, setLong] = useState(null);
+  const [forecast, setForecast] = useState(null); // state de prognoza
+  const [error, setError] = useState(null); // state de eroarea in caz de fetch gresit
+  const [lat, setLat] = useState(null); // state de latitudine
+  const [long, setLong] = useState(null); // state de longitudine
 
   const getCoords = async (cityName) => {
+    // fetch de luare a coordonatelor orasului
     const res = await fetch(
       `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(
         cityName
@@ -36,6 +37,7 @@ function WeatherForecast7Days({ city }) {
   };
 
   const get7DayForecast = async (lat, lon) => {
+    // fetch de luare a prognozei meteo bazat pe latitudine si longitudine
     const res = await fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`
     );
@@ -48,18 +50,20 @@ function WeatherForecast7Days({ city }) {
       try {
         setError(null);
         setForecast(null);
-        const location = await getCoords(city);
-        setLat(location.latitude);
+        const location = await getCoords(city); // apelam fetch-ul de coordonate
+        setLat(location.latitude); // setam coordonatele cu datele primite din primul fetch
         setLong(location.longitude);
         if (!location) {
           setError("City not found.");
           return;
         }
         const forecastData = await get7DayForecast(
+          // apelam fetch-ul de prognoza cu latitudinea si longitudinea obtinute din primul fetch
           location.latitude,
           location.longitude
         );
         setForecast({
+          // setam prognoza cu datele obtinute din al doilea
           ...forecastData,
           name: location.name,
           country: location.country,
@@ -70,7 +74,7 @@ function WeatherForecast7Days({ city }) {
     }
 
     if (city) fetchForecast();
-  }, [city]);
+  }, [city]); // la schimbarea orasului primit ca prop, apelam cele 2 fetchuri si initiem state-urile cu datele corespunzatoare
 
   if (error) return <div className="text-red-500">{error}</div>;
   if (!forecast)
@@ -83,6 +87,7 @@ function WeatherForecast7Days({ city }) {
           📅 7-Day Forecast for {forecast.name}, {forecast.country}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-5">
+          {/* Folosdin map, parcurgem cele 7 zile si afisam datele legate de prognoza pe acestea */}
           {forecast.time.map((date, index) => (
             <div
               key={date}
@@ -108,6 +113,7 @@ function WeatherForecast7Days({ city }) {
           ))}
         </div>
       </div>
+      {/* Apelam componenta MapView cu propsurile de latitudine si longitudine obtinute din fetch */}
       <MapView lat={lat} lng={long}></MapView>
     </>
   );

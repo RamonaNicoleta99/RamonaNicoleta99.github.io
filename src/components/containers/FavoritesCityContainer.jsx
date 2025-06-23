@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import useFavorites from "../hooks/UseFavorites";
 import { Link } from "react-router";
 
-function FavoritesCityContainer({ city, onFavoritesChange }) {
-  const { toggleFavorite, isCityFavorite, disabled } = useFavorites();
+function FavoritesCityContainer({ city }) {
+  const { toggleFavorite, isCityFavorite, disabled } = useFavorites(); // apelam hook-ul de favorites
 
   const handleToggle = () => {
-    toggleFavorite(city);
+    toggleFavorite(city); // leaga apasarea butonului de functia din hook
   };
 
   if (!city) return null;
@@ -20,6 +20,7 @@ function FavoritesCityContainer({ city, onFavoritesChange }) {
       >
         {isCityFavorite(city) ? "❤" : "➕"}
       </button>
+      {/* conditionam proprietatea disabled si iconita butonului in functie de proprietatile returnate de state */}
       <h2 className="text-2xl font-bold mb-2">{city.title}</h2>
       {city.description && (
         <p className="italic text-sm mb-2">{city.description}</p>
@@ -32,12 +33,12 @@ function FavoritesCityContainer({ city, onFavoritesChange }) {
         />
         <p className="text-base">{city.extract}</p>
       </div>
-
       <div className="mt-6">
         <Link
           to={`/destinations/${encodeURIComponent(city.title)}`}
           className="hover:underline underline-offset-4 text-xl"
         >
+          {/* redirectionare catre pagina de destinations corespunzatoare orasului */}
           Read more
         </Link>
       </div>

@@ -1,9 +1,8 @@
-// src/hooks/useTravelEvents.js
 import { useState, useEffect } from "react";
 
 const useTravel = () => {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const email = currentUser?.email;
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")); // luam userul curent din local storage
+  const email = currentUser?.email; // adresa de email a utilizatorului log
 
   const [internalStore, setInternalStore] = useState(() => {
     const stored = localStorage.getItem("__allUserEvents__") || "{}";
@@ -12,11 +11,10 @@ const useTravel = () => {
     } catch {
       return {};
     }
-  });
+  }); // state care contine toate evenimentele pentru utilziatori
 
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([]); // lista de evenimente afisata pentru utilizatorul curent
 
-  // Load correct user's events on mount or when email changes
   useEffect(() => {
     if (!email) return;
     const userEvents = internalStore[email] || [];
@@ -25,11 +23,10 @@ const useTravel = () => {
       start: new Date(e.start),
       end: new Date(e.end),
     }));
-    setEvents(parsedEvents);
+    setEvents(parsedEvents); // setam state-ul ca valoarea updatata
     localStorage.setItem("travelEvents", JSON.stringify(userEvents));
-  }, [email]);
+  }, [email]); // daca email se modifica, schimbam valorile variabilelor travelEvents
 
-  // Update internal store and persist changes
   useEffect(() => {
     if (!email) return;
 
@@ -37,12 +34,13 @@ const useTravel = () => {
       ...internalStore,
       [email]: events,
     };
-    setInternalStore(updated);
+    setInternalStore(updated); // setam state-ul cu valoarea updatata
     localStorage.setItem("__allUserEvents__", JSON.stringify(updated));
     localStorage.setItem("travelEvents", JSON.stringify(events));
-  }, [events, email]);
+  }, [events, email]); // daca events sau email se modifica, schimbam valorile variabilelor __allUserEvents__ si travelEvents din local storage
 
   const updateEvents = (newEvents) => {
+    // functie de update pentru state-ul events
     setEvents(newEvents);
   };
 

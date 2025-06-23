@@ -6,13 +6,15 @@ export default function ContactUsPage() {
     name: "",
     email: "",
     message: "",
-  });
+  }); // state de stocare a datelor din form
 
   const handleChange = (e) => {
+    // functie de modificare a state-ului formului
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
+    // functie de submit + reset form
     e.preventDefault();
     alert("Thank you for contacting us!");
     setForm({ name: "", email: "", message: "" });
@@ -29,6 +31,7 @@ export default function ContactUsPage() {
             hear from you!
           </p>
 
+          {/* legam functie de submit pe eventul onSubmit si functia de change pe eventul de onChange aplicat pe fiecare din cele 3 inputuri */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div>
               <label className="block mb-1 text-sm font-medium">Name</label>
@@ -79,6 +82,7 @@ export default function ContactUsPage() {
         <div className="w-full">
           <h1 className="text-3xl font-bold text-center mb-8">🗺️ FAQs</h1>
           <div className="space-y-2">
+            {/* Apelam componenta de acordeon cu cate 2 propsuri: question + answer */}
             <Accordeon
               question="What is the purpose of Travel Planner?"
               answer="Travel Planner helps travel enthusiasts discover popular attractions and learn more about destinations across the globe — all in one place."

@@ -4,7 +4,7 @@ import WeatherWidget from "../containers/WeatherWidget";
 import CityInfoContainer from "../containers/CityInfoContainer";
 
 function DestinationPage() {
-  const { city } = useParams();
+  const { city } = useParams(); // luam numele orasului din parametrul link-ului pentru a il da ca props componentelor copil
 
   return (
     <>
